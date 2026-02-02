@@ -1,0 +1,23 @@
+The model demonstrates limited ability to distinguish between pneumonia and normal chest X-ray images. While sensitivity was relatively high at lower thresholds, this came at the cost of an extremely high false positive rate, making the model unsuitable for direct clinical deployment.
+
+Several factors likely contributed to this behavior:
+1. Label noise in ChestXray14 dataset: The dataset is weakly labeled using NLP extraction from radiology reports, which introduces inaccuracies.
+2. Class imbalance: Pneumonia cases represent a small fraction of the dataset, biasing the model toward predicting the negative class.
+3. Single-label simplification: The original dataset is multi-label, but the task was simplified to binary pneumonia detection, ignoring co-occurring diseases.
+4. Limited training epochs and resolution: Computational constraints limited training duration and image resolution.
+
+Grad-CAM visualizations indicate that the model does not consistently attend to pathological regions, suggesting insufficient feature learning.
+
+Despite these limitations, the project demonstrates:
+* End-to-end medical image classification
+* Use of transfer learning
+* Evaluation using ROC and confusion matrices
+* Application of explainable AI (Grad-CAM)
+
+Future work could include:
+* Multi-label classification
+* Better class balancing
+* Training on higher resolution images
+* Using DenseNet architectures proven effective for chest X-ray tasks
+* Fine-tuning deeper layers
+* Calibration of predicted probabilities

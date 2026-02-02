@@ -1,0 +1,39 @@
+Model Performance
+
+The ResNet-50 model was trained for binary classification (Pneumonia vs Normal) on the NIH ChestXray14 dataset using transfer learning. Performance was evaluated on a held-out validation set using multiple decision thresholds.
+
+At a threshold of 0.5, the confusion matrix was:
+TP = 54
+FN = 13
+TN = 1429
+FP = 3504
+
+
+This corresponds to:
+Sensitivity (Recall): 0.81
+Specificity: 0.29
+AUC: ≈ 0.59
+
+Threshold analysis showed:
+
+| Threshold | TP | FN | TN   | FP   |
+| --------- | -- | -- | ---- | ---- |
+| 0.4       | 67 | 0  | 0    | 4933 |
+| 0.5       | 54 | 13 | 1429 | 3504 |
+| 0.6       | 3  | 64 | 4760 | 173  |
+| 0.7       | 0  | 67 | 4878 | 55   |
+Lower thresholds resulted in high sensitivity but extremely poor specificity, while higher thresholds resulted in high specificity but failure to detect pneumonia cases.
+
+
+ROC Curve: The ROC curve showed limited class separation, with an Area Under the Curve (AUC) of approximately 0.59, indicating weak discriminative performance.
+
+
+Grad-CAM Visualization
+
+Grad-CAM was applied to visualize model attention on chest X-ray images for:
+True Positive
+False Negative
+True Negative
+False Positive
+
+Visualizations revealed that the model often focused on lung regions but also frequently attended to irrelevant areas such as rib edges and image borders, particularly for false positive predictions.
